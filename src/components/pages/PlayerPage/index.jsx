@@ -22,8 +22,7 @@ export const Playerpresent = ({
   relativeVideos,
   loadingRelatedVideos,
   onScrollEnd,
-}) => {console.log(videoData)
-  return(
+}) => (
   <VideosListTemplate
   headerContents={<Header />}
   playerContents={<YoutubeInline videoId={videoId} />}
@@ -36,7 +35,7 @@ export const Playerpresent = ({
   )}
   onScrollEnd={onScrollEnd}
   />
-)}
+)
 
 Playerpresent.propTypes = {
   videoId: PropTypes.string.isRequired,
@@ -68,6 +67,7 @@ export const Playercontain = ({
   const getVideoData = async () => {
     const { data } = await api.getVideoData(videoId)
     setVideoData(data)
+    console.log(data)
   }
 
 

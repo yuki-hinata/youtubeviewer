@@ -32,6 +32,19 @@ router.get('/videos/search/:keyword', (req, res, next) => {
       })().catch(next);
     });
 
+    //動画詳細情報取得
+    router.get('/videos/:videoId', (req, res, next) => {
+      const { videoId } = req.params;
+      (async () => {
+        // 動画の情報を取得
+        const { data: { items } } = await youtube.videos.list({
+          part: 'statistics,snippet',
+          id: videoId,
+        });
+        res.json(items[0]);
+      })().catch(next);
+    });
+
     // 関連動画取得
 router.get('/videos/:videoId/related', (req, res, next) => {
   const { videoId: relatedToVideoId } = req.params;
@@ -55,4 +68,4 @@ router.get('/videos/:videoId/related', (req, res, next) => {
   })().catch(next);
 });
     
-    module.exports = router;
+module.exports = router;

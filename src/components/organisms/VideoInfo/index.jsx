@@ -17,12 +17,12 @@ margin: 4px 0 10px;
 
 //showalldescriptionがfalseの時-webkit~が表示され、省略表示。
 const Description = styled(Typography)`
+display: -webkiit-box;
 margin-top: 10px;
 height: fit-content;
 overflow: hidden;
 text-overflow: ellipsis;
-display: -webkiit-box;
-${({ showAllDescription }) => !showAllDescription && '-webkit-line-clamp: 3'}
+${({ showAllDescription }) => !showAllDescription && '-webkit-line-clamp: 3'};
 -webkit-box-orient: vertical;
 white-space: pre-wrap;
 `;
