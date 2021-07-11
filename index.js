@@ -3,9 +3,11 @@ const express = require('express')
 const app = express()
 const router = express.Router()
 
-const server = aoo.listen(3000, function(){
+const server = app.listen(3000, function(){
     console.log(`Node.js is listening to PORT: ${server.address().port}`)
 })
+
+app.use('/api', require('./api'))
 
 router.use(express.static('public'))
 

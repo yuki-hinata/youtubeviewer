@@ -382,38 +382,37 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var rootEl = document.getElementById('root');
 
-var x = 
-/*__PURE__*/
-function(){
+var x =
+/*#__PURE__*/
+function () {
   var _ref = _asyncToGenerator(
-    /*__PURE__*/
-    regeneraterRuntime.mark(function _callee(){
-      return regeneraterRuntime.wrap(function _callee$(_context){
-        while(1){
-          switch(_context.prev = _context.next){
-            case 0:
-              return _context.abrupt("return", new Promise(function (r){
-                return r
-              }))
+  /*#__PURE__*/
+  regeneratorRuntime.mark(function _callee() {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            return _context.abrupt("return", new Promise(function (r) {
+              return r;
+            }));
 
-              case 1:
-                case "end":
-                  return _context.stop();
-          }
+          case 1:
+          case "end":
+            return _context.stop();
         }
-      }, _callee)
-    }));
+      }
+    }, _callee);
+  }));
 
-    return function x(){
-      return _ref.apply(this, arguments);
-    };
+  return function x() {
+    return _ref.apply(this, arguments);
+  };
 }();
 
-
-_reactDom.default.render( /*#__PURE__*/_react.default.createElement("h1", {
+_reactDom.default.render(_react.default.createElement("h1", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 13,
+    lineNumber: 13
   },
   __self: void 0
-}, "Hello, react.", x()), rootEl);
+}, "Hello react.", x()), rootEl);

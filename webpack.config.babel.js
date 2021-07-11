@@ -1,5 +1,6 @@
 import  webpack  from "webpack";
 import path from 'path'
+import { IgnorePlugin } from "webpack";
 
 export default (env, args) => {
     const isProduction = args.mode === 'production';
@@ -7,7 +8,7 @@ export default (env, args) => {
     const rules = [
         {
             test: /\.jsx?$/,
-            use: ['babel-loader'],
+            use: ['babel-loader']
         }
     ]
 
@@ -20,11 +21,15 @@ export default (env, args) => {
         },
         module: { rules },
         resolve: {
-            modules: [__dirname, 'node_modules'],
+            modules: ['node_modules'],
             alias: {
                 '~': path.join(__dirname, './src/'),
             },
-            extentions: ['.js', '.jsx'],
-        }
+            extensions: ['.js', '.jsx'],
+        },
+        //momentの中のlocales以下のもぢゅーるをビルド時含めない。
+        plugins: [
+            new IgnorePlugin(/^\.\/locale$/, /moment$/),
+        ]
     }
 }

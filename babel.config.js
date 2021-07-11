@@ -23,7 +23,20 @@ module.exports= (api) => {
         ]
     ]
 
-    const plugins = []
+    const plugins = [
+        [
+            'babel-plugin-styled-components',
+            isProduction
+                ?{
+                    filename: false,
+                    displayName: false,
+                    pure: true,
+                }
+                :{
+                    minify: false,
+                }
+        ]
+    ]
 
     return {
         presets,
