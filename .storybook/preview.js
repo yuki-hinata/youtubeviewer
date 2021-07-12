@@ -1,6 +1,8 @@
 import React from 'react'
 import {MemoryRouter} from 'react-router'
 import {addDecorator} from '@storybook/react'
+import { action } from '@storybook/addon-actions'
+import { FavoriteProvider } from '../src/contexts/FavoriteContext';
 import GlobalStyle from '../src/style/GlobalStyle'
 
 addDecorator(storyFn => (
@@ -11,4 +13,17 @@ addDecorator(storyFn => (
         </MemoryRouter>
 ))
 
-addDecorator(storyFn => <><GlobalStyle />{storyFn()}</>)
+const mockApi = {
+    get: async () => {
+        action('api.get')();
+        return { data: [] };
+    },
+}
+
+addDecorator((storyFn) => (
+    <FavoriteProvider api={mockApi}>
+        {storyFn()}
+    </FavoriteProvider>
+))
+
+addDecorator(storyFn => <><GlobalStyle />{storyFn()}</>);

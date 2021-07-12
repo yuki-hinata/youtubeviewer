@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import styled from 'styled-components'
+import FavoriteButton from '~/components/molecules/FavoriteButton'
 import Typography from '~/components/atoms/Typography'
 import Paperbtn from '~/components/atoms/PaperButton'
 
@@ -11,23 +12,34 @@ padding: 10px;
 box-sizing: border-box;
 `;
 
+const TitleWrapper = styled.div`
+display: flex;
+align-items: flex-start;
+`;
+
 const Title = styled(Typography)`
 margin: 4px 0 10px;
+flex-grow: 1;
+`;
+
+const StyledFavoriteButton = styled(FavoriteButton)`
+flex-shrink: 0;
 `;
 
 //showalldescriptionがfalseの時-webkit~が表示され、省略表示。
 const Description = styled(Typography)`
-display: -webkiit-box;
+display: -webkit-box;
 margin-top: 10px;
 height: fit-content;
 overflow: hidden;
 text-overflow: ellipsis;
-${({ showAllDescription }) => !showAllDescription && '-webkit-line-clamp: 3'};
 -webkit-box-orient: vertical;
+${({ showAllDescription }) => !showAllDescription && '-webkit-line-clamp: 3'};
 white-space: pre-wrap;
 `;
 
 export const Videoinfo = ({
+    videoId,
     title,
     description,
     publishedAt,
@@ -36,7 +48,10 @@ export const Videoinfo = ({
     const [showAllDescription, setShowAllDescription] = useState(false)
     return(
         <Root>
+            <TitleWrapper>
             <Title size='subtitle' bold>{title}</Title>
+            <StyledFavoriteButton videoId={videoId} />
+            </TitleWrapper>
             <Typography size='xs' color='gray'>
                 {viewCount}
                 回視聴・
@@ -55,6 +70,7 @@ export const Videoinfo = ({
 }
 
 Videoinfo.propTypes = {
+    videoId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     viewCount: PropTypes.string.isRequired,
     publishedAt: PropTypes.string.isRequired,
@@ -63,6 +79,7 @@ Videoinfo.propTypes = {
 
 const Videocontainer = ({
     item :{
+        id: videoId,
         snippet: {
             publishedAt,
             title,
@@ -74,6 +91,7 @@ const Videocontainer = ({
     },
     presenter,
 }) => (presenter({
+    videoId,
     title,
     viewCount,
     publishedAt: moment(publishedAt).format('YYYY/MM/DD'),
@@ -82,6 +100,7 @@ const Videocontainer = ({
 
 Videocontainer.propTypes = {
     item: PropTypes.shape({
+        id: PropTypes.string,
         snippet: PropTypes.shape({
             publishedAt: PropTypes.string,
             title: PropTypes.string,

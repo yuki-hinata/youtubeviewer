@@ -1,6 +1,7 @@
 import React from 'react'
 import { actions } from '@storybook/addon-actions'
 import styled, { css } from 'styled-components'
+import Typography from '~/components/atoms/Typography'
 import VideosListTemplate from '.'
 
 export default { title: 'templates/VideoListTemplate' }
@@ -31,6 +32,7 @@ ${commonStyle};
 export const Default = () => (
     <VideosListTemplate
     headerContents={<Header>header</Header>}
+    titleContents={<Typography>タイトル</Typography>}
     searchFormContents={<SearchForm>SearchForm</SearchForm>}
     videosListContents={<VideosList>videosList</VideosList>}
     {...actions('onScrollEnd')}

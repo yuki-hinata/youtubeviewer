@@ -15,6 +15,11 @@ margin: auto;
 border-bottom: 1px solid #ccc;
 `;
 
+const TitleWrapper = styled.div`
+max-width: 720px;
+margin: auto;
+`;
+
 const SearchWrapper = styled.div`
 max-width: 720px;
 margin: auto;
@@ -27,6 +32,7 @@ margin: auto;
 
 const VideosListTemplate = ({
     headerContents,
+    titleContents,
     searchFormContents,
     videosListContents,
     onScrollEnd,
@@ -38,6 +44,9 @@ const VideosListTemplate = ({
             <HeaderWrapper>
                 {headerContents}
             </HeaderWrapper>
+            <TitleWrapper>
+                {titleContents}
+            </TitleWrapper>
             <SearchWrapper>
                 {searchFormContents}
             </SearchWrapper>
@@ -50,6 +59,7 @@ const VideosListTemplate = ({
 
 VideosListTemplate.propTypes = {
     headerContents: PropTypes.node,
+    titleContents: PropTypes.node,
     searchFormContents: PropTypes.node,
     videosListContents: PropTypes.node.isRequired,
     onScrollEnd: PropTypes.func,
@@ -57,6 +67,7 @@ VideosListTemplate.propTypes = {
 
 VideosListTemplate.defaultProps = {
     headerContents: null,
+    titleContents: null,
     searchFormContents: null,
     onScrollEnd: null,
 }
